@@ -4,10 +4,10 @@ Generated from Yahoo Finance data through **2026-11-20**. Universe: `nasdaq` (14
 
 ## Key findings
 
-- **Headline strategy:** 11.3% vs 7.1% for the equal-weight universe and 1.8% for QQQ, from 2025-10-01 to 2026-11-20 (14 monthly cohorts, 2 with a full 12-month outcome).
-- **Ranking skill:** the ML forecast's rank IC across the whole eligible universe averaged -0.086 and was positive on 0% of formation dates. So the top-20 outperformance did **not** come from the model ranking the universe well. It rests on a handful of names that passed the screens, and at this sample size it cannot be told apart from luck.
+- **Headline strategy:** 10.9% vs 7.1% for the equal-weight universe and 1.8% for QQQ, from 2025-10-01 to 2026-11-20 (14 monthly cohorts, 2 with a full 12-month outcome).
+- **Ranking skill:** the ML forecast's rank IC across the whole eligible universe averaged -0.085 and was positive on 0% of formation dates. So the top-20 outperformance did **not** come from the model ranking the universe well. It rests on a handful of names that passed the screens, and at this sample size it cannot be told apart from luck.
 - **Rule-based screens alone:** mean rank IC +0.052.
-- **Price targets:** median absolute error 30.6% vs 29.9% for a flat +8% target, so the model's targets were no more accurate than the naive baseline. 72% of realised prices landed inside the bear-bull range (nominally 80%).
+- **Price targets:** median absolute error 30.6% vs 29.9% for a flat +8% target, so the model's targets were no more accurate than the naive baseline. 71% of realised prices landed inside the bear-bull range (nominally 80%).
 
 ## Setup
 
@@ -23,8 +23,8 @@ Generated from Yahoo Finance data through **2026-11-20**. Universe: `nasdaq` (14
 
 | strategy | start | end | total_return | cagr | ann_vol | sharpe_rf0 | max_drawdown |
 |---|---|---|---|---|---|---|---|
-| ML + screens (headline) | 2025-10-01 | 2026-11-20 | 11.3% | 9.8% | 19.6% | 0.58 | -16.7% |
-| ML only | 2025-10-01 | 2026-11-20 | 6.7% | 5.9% | 19.4% | 0.39 | -18.8% |
+| ML + screens (headline) | 2025-10-01 | 2026-11-20 | 10.9% | 9.4% | 18.9% | 0.57 | -15.3% |
+| ML only | 2025-10-01 | 2026-11-20 | 5.3% | 4.6% | 20.1% | 0.32 | -19.3% |
 | Screens only (no ML) | 2025-10-01 | 2026-11-20 | 8.9% | 7.8% | 20.1% | 0.47 | -18.0% |
 | Equal-weight universe | 2025-10-01 | 2026-11-20 | 7.1% | 6.2% | 19.8% | 0.40 | -14.2% |
 | QQQ | 2025-10-01 | 2026-11-20 | 1.8% | 1.6% | 22.0% | 0.18 | -19.9% |
@@ -35,55 +35,55 @@ Cohorts formed after 2025-10-31 have not finished their 12 months yet. Their ret
 
 | date | matured | end | n_universe | n_candidates | ML + screens (headline) | ML only | Screens only (no ML) | Equal-weight universe | QQQ |
 |---|---|---|---|---|---|---|---|---|---|
-| 2025-09-30 | True | 2026-09-30 | 638 | 316 | 40.8% | 42.3% | 46.7% | 21.9% | 23.8% |
-| 2025-10-31 | True | 2026-11-02 | 646 | 321 | 30.2% | 30.0% | 7.3% | 13.3% | 8.8% |
-| 2025-11-28 | False | 2026-11-20 | 645 | 326 | 13.0% | 13.1% | 4.5% | 3.2% | -1.3% |
-| 2025-12-31 | False | 2026-11-20 | 648 | 326 | 10.7% | 7.3% | -5.4% | 2.1% | -0.6% |
-| 2026-01-30 | False | 2026-11-20 | 651 | 328 | 4.0% | 4.0% | -8.6% | -0.1% | -1.8% |
-| 2026-02-27 | False | 2026-11-20 | 649 | 326 | 2.2% | 1.4% | -9.5% | -0.2% | 0.5% |
-| 2026-03-31 | False | 2026-11-20 | 647 | 324 | -12.6% | -10.7% | -12.2% | 3.8% | 5.6% |
-| 2026-04-30 | False | 2026-11-20 | 677 | 341 | -10.4% | -13.6% | -13.2% | -3.3% | -8.7% |
-| 2026-05-29 | False | 2026-11-20 | 685 | 343 | -16.7% | -20.7% | -12.9% | -8.7% | -17.4% |
-| 2026-06-30 | False | 2026-11-20 | 696 | 354 | -24.2% | -31.2% | -8.0% | -10.8% | -17.3% |
-| 2026-07-31 | False | 2026-11-20 | 684 | 342 | -17.0% | -19.8% | -13.0% | -9.0% | -11.5% |
-| 2026-08-31 | False | 2026-11-20 | 682 | 343 | -14.2% | -21.3% | -17.7% | -11.6% | -15.0% |
-| 2026-09-30 | False | 2026-11-20 | 676 | 330 | -6.7% | -11.6% | -15.2% | -8.2% | -17.8% |
-| 2026-10-30 | False | 2026-11-20 | 664 | 330 | -11.2% | -11.1% | -8.4% | -8.6% | -11.9% |
+| 2025-09-30 | True | 2026-09-30 | 638 | 317 | 41.5% | 40.4% | 46.7% | 21.9% | 23.8% |
+| 2025-10-31 | True | 2026-11-02 | 646 | 321 | 33.0% | 31.8% | 7.3% | 13.3% | 8.8% |
+| 2025-11-28 | False | 2026-11-20 | 645 | 326 | 17.4% | 15.3% | 4.5% | 3.2% | -1.3% |
+| 2025-12-31 | False | 2026-11-20 | 648 | 326 | 9.8% | 9.9% | -5.4% | 2.1% | -0.6% |
+| 2026-01-30 | False | 2026-11-20 | 651 | 328 | 7.0% | 7.5% | -8.6% | -0.1% | -1.8% |
+| 2026-02-27 | False | 2026-11-20 | 649 | 326 | 0.2% | -3.1% | -9.5% | -0.2% | 0.5% |
+| 2026-03-31 | False | 2026-11-20 | 647 | 324 | -11.7% | -11.2% | -12.2% | 3.8% | 5.6% |
+| 2026-04-30 | False | 2026-11-20 | 677 | 343 | -10.5% | -14.4% | -13.2% | -3.3% | -8.7% |
+| 2026-05-29 | False | 2026-11-20 | 685 | 344 | -13.2% | -18.2% | -12.9% | -8.7% | -17.4% |
+| 2026-06-30 | False | 2026-11-20 | 696 | 355 | -21.5% | -31.9% | -8.0% | -10.8% | -17.3% |
+| 2026-07-31 | False | 2026-11-20 | 684 | 343 | -15.7% | -20.1% | -13.0% | -9.0% | -11.5% |
+| 2026-08-31 | False | 2026-11-20 | 682 | 344 | -14.2% | -23.4% | -17.7% | -11.6% | -15.0% |
+| 2026-09-30 | False | 2026-11-20 | 676 | 331 | -5.0% | -13.5% | -15.2% | -8.2% | -17.8% |
+| 2026-10-30 | False | 2026-11-20 | 664 | 331 | -12.5% | -11.6% | -8.4% | -8.6% | -11.9% |
 
 ## Does the model rank stocks correctly?
 
 Rank information coefficient (IC) is the Spearman correlation between the forecast and the realised return across stocks on a formation date. +1 is a perfect ranking and 0 is no skill. Monthly cross-sectional ICs of 0.03-0.08 are considered useful in practice. For calibration: on pure-noise synthetic data with the same structure, this backtest produces mean ICs between about -0.05 and +0.10, so values in that range cannot be told apart from luck.
 
-- Matured cohorts (full 12 months, n=2): mean ML IC **-0.075**, mean screens-only IC -0.029
-- Immature cohorts (returns to date, n=12): mean ML IC -0.088, mean screens-only IC 0.065
+- Matured cohorts (full 12 months, n=2): mean ML IC **-0.066**, mean screens-only IC -0.028
+- Immature cohorts (returns to date, n=12): mean ML IC -0.088, mean screens-only IC 0.066
 
 | date | matured | ml_ic | composite_ic |
 |---|---|---|---|
-| 2025-09-30 | True | -0.069 | -0.034 |
-| 2025-10-31 | True | -0.082 | -0.024 |
-| 2025-11-28 | False | -0.080 | -0.013 |
-| 2025-12-31 | False | -0.029 | 0.012 |
-| 2026-01-30 | False | -0.026 | 0.058 |
-| 2026-02-27 | False | -0.015 | 0.134 |
-| 2026-03-31 | False | -0.102 | 0.105 |
-| 2026-04-30 | False | -0.148 | 0.139 |
-| 2026-05-29 | False | -0.176 | 0.174 |
-| 2026-06-30 | False | -0.194 | 0.150 |
+| 2025-09-30 | True | -0.056 | -0.033 |
+| 2025-10-31 | True | -0.076 | -0.024 |
+| 2025-11-28 | False | -0.065 | -0.012 |
+| 2025-12-31 | False | -0.027 | 0.013 |
+| 2026-01-30 | False | -0.024 | 0.060 |
+| 2026-02-27 | False | -0.021 | 0.136 |
+| 2026-03-31 | False | -0.105 | 0.104 |
+| 2026-04-30 | False | -0.147 | 0.138 |
+| 2026-05-29 | False | -0.181 | 0.173 |
+| 2026-06-30 | False | -0.190 | 0.150 |
 | 2026-07-31 | False | -0.164 | 0.065 |
-| 2026-08-31 | False | -0.079 | 0.002 |
-| 2026-09-30 | False | -0.026 | 0.022 |
-| 2026-10-30 | False | -0.016 | -0.064 |
+| 2026-08-31 | False | -0.088 | 0.002 |
+| 2026-09-30 | False | -0.028 | 0.021 |
+| 2026-10-30 | False | -0.013 | -0.064 |
 
 ML forecast quintiles on matured cohorts (Q5 = highest forecast), as average 12m return minus the equal-weight universe:
 
 | quintile | mean_return_vs_universe | pct_dates_beating_universe |
 |---|---|---|
-| Q1 | 11.9% | 100.0% |
-| Q2 | -5.5% | 0.0% |
-| Q3 | -3.6% | 0.0% |
-| Q4 | -2.8% | 0.0% |
-| Q5 | -0.1% | 50.0% |
-| Q5-Q1 | -12.0% | 0.0% |
+| Q1 | 10.5% | 100.0% |
+| Q2 | -3.4% | 0.0% |
+| Q3 | -6.2% | 0.0% |
+| Q4 | -4.1% | 0.0% |
+| Q5 | 3.1% | 100.0% |
+| Q5-Q1 | -7.3% | 0.0% |
 
 ## Price-target accuracy (matured cohorts)
 
@@ -92,23 +92,23 @@ Compares each 12-month target with the price actually reached. The naive baselin
 | metric | all eligible stocks | ml_screened picks |
 |---|---|---|
 | Targets evaluated | 1284 | 40 |
-| Realised price inside bear-bull range | 71.7% | 75.0% |
-| Direction correct (up vs down) | 54.4% | 72.5% |
-| Realised price at or above target | 49.8% | 62.5% |
-| Median abs. error, model (return pts) | 30.6% | 34.2% |
-| Median abs. error, naive flat target | 29.9% | 33.5% |
+| Realised price inside bear-bull range | 71.1% | 75.0% |
+| Direction correct (up vs down) | 54.4% | 75.0% |
+| Realised price at or above target | 49.9% | 65.0% |
+| Median abs. error, model (return pts) | 30.6% | 34.5% |
+| Median abs. error, naive flat target | 29.9% | 35.8% |
 | Mean implied return | 5.7% | 10.4% |
-| Mean realised return | 17.5% | 35.5% |
+| Mean realised return | 17.5% | 37.3% |
 
 ## Model versions tried
 
-Every model version is backtested on every run, so the version kept for live picks can be compared with the ones dropped. v1 also used size, volatility and short-term price features. During development, on a partial download (about 1,160 tickers, before rate-limited requests were retried), v1 leaned mainly on size and volatility and picked a cluster of small, volatile semiconductor stocks. On this run's data its most important features are gross_margin, rev_growth_prev, rev_cagr_2y, log_mcap, growth_score. v2 and v3 drop those features so the model stays about company fundamentals (revenue growth, margins, valuation) plus 12-1 month momentum, and v3 adds stronger regularisation because the training sample is small. These changes were made *after* seeing v1's backtest, so v3's numbers carry some selection bias. The fair reading is the whole table, not just the best row.
+Every model version is backtested on every run, so the version kept for live picks can be compared with the ones dropped. v1 also used size, volatility and short-term price features. During development, on a partial download (about 1,160 tickers, before rate-limited requests were retried), v1 leaned mainly on size and volatility and picked a cluster of small, volatile semiconductor stocks. On this run's data its most important features are gross_margin, rev_cagr_2y, log_mcap, rev_growth_prev, fcf_margin. v2 and v3 drop those features so the model stays about company fundamentals (revenue growth, margins, valuation) plus 12-1 month momentum, and v3 adds stronger regularisation because the training sample is small. These changes were made *after* seeing v1's backtest, so v3's numbers carry some selection bias. The fair reading is the whole table, not just the best row.
 
 | model | matured_ml_ic | immature_ml_ic | ml_screened_total | ml_only_total | screens_only_total | universe_ew_total |
 |---|---|---|---|---|---|---|
-| v1: all features, standard trees | -0.066 | -0.153 | -2.9% | 0.7% | 8.9% | 7.1% |
-| v2: fundamentals + momentum, standard trees | -0.088 | -0.122 | 4.2% | 0.3% | 8.9% | 7.1% |
-| v3 (live): fundamentals + momentum, strong regularisation | -0.075 | -0.088 | 11.3% | 6.7% | 8.9% | 7.1% |
+| v1: all features, standard trees | -0.067 | -0.154 | -2.0% | 7.0% | 8.9% | 7.1% |
+| v2: fundamentals + momentum, standard trees | -0.080 | -0.126 | 0.1% | -7.7% | 8.9% | 7.1% |
+| v3 (live): fundamentals + momentum, strong regularisation | -0.066 | -0.088 | 10.9% | 5.3% | 8.9% | 7.1% |
 
 ## Which research signals worked? (whole labelled sample, no model)
 
@@ -118,26 +118,26 @@ Mean monthly rank IC of each raw signal against realised 12-month excess return,
 
 | signal | mean_ic | ic_std | ic_ir | pct_dates_positive | n_dates |
 |---|---|---|---|---|---|
-| log_mcap | 0.054 | 0.127 | 0.426 | 52.6% | 19 |
-| margin_score | 0.050 | 0.102 | 0.489 | 47.4% | 19 |
+| log_mcap | 0.054 | 0.127 | 0.425 | 52.6% | 19 |
+| margin_score | 0.050 | 0.101 | 0.491 | 52.6% | 19 |
 | dist_high | 0.040 | 0.109 | 0.365 | 68.4% | 19 |
 | op_margin | 0.039 | 0.053 | 0.727 | 78.9% | 19 |
-| d_fcf_margin | 0.038 | 0.082 | 0.463 | 52.6% | 19 |
+| d_fcf_margin | 0.037 | 0.080 | 0.464 | 52.6% | 19 |
 | d_gross_margin | 0.036 | 0.054 | 0.672 | 68.4% | 19 |
 | mom_12_1 | 0.033 | 0.091 | 0.366 | 63.2% | 19 |
 | incremental_op_margin | 0.030 | 0.023 | 1.341 | 89.5% | 19 |
-| ebit_ev | 0.027 | 0.051 | 0.534 | 68.4% | 19 |
-| composite_score | 0.025 | 0.109 | 0.227 | 47.4% | 19 |
+| ebit_ev | 0.028 | 0.051 | 0.552 | 73.7% | 19 |
+| composite_score | 0.025 | 0.108 | 0.233 | 47.4% | 19 |
 | mom_6 | 0.024 | 0.075 | 0.321 | 57.9% | 19 |
 | d_op_margin | 0.022 | 0.128 | 0.173 | 47.4% | 19 |
 | earnings_yield | 0.022 | 0.039 | 0.550 | 73.7% | 19 |
-| value_score | 0.019 | 0.052 | 0.364 | 52.6% | 19 |
-| book_to_market | 0.018 | 0.127 | 0.143 | 52.6% | 19 |
-| sales_yield | 0.017 | 0.085 | 0.205 | 52.6% | 19 |
+| value_score | 0.021 | 0.052 | 0.395 | 57.9% | 19 |
+| sales_yield | 0.018 | 0.086 | 0.215 | 52.6% | 19 |
 | d_net_margin | 0.015 | 0.115 | 0.132 | 52.6% | 19 |
+| book_to_market | 0.015 | 0.126 | 0.119 | 52.6% | 19 |
 | vol_1y | 0.009 | 0.104 | 0.084 | 63.2% | 19 |
-| fcf_margin | 0.004 | 0.099 | 0.040 | 52.6% | 19 |
-| fcf_yield | -0.008 | 0.045 | -0.171 | 47.4% | 19 |
+| fcf_margin | 0.004 | 0.103 | 0.038 | 52.6% | 19 |
+| fcf_yield | -0.007 | 0.045 | -0.147 | 47.4% | 19 |
 | rev_growth | -0.022 | 0.128 | -0.174 | 47.4% | 19 |
 | gross_margin | -0.026 | 0.112 | -0.228 | 47.4% | 19 |
 | growth_score | -0.026 | 0.130 | -0.202 | 47.4% | 19 |
@@ -149,12 +149,12 @@ Composite (screens-only) score quintiles over the same sample:
 
 | quintile | mean_return_vs_universe | pct_dates_beating_universe |
 |---|---|---|
-| Q1 | 13.4% | 73.7% |
-| Q2 | -2.5% | 36.8% |
-| Q3 | -9.2% | 10.5% |
+| Q1 | 13.6% | 73.7% |
+| Q2 | -2.8% | 36.8% |
+| Q3 | -9.1% | 10.5% |
 | Q4 | -5.5% | 26.3% |
-| Q5 | 3.7% | 73.7% |
-| Q5-Q1 | -9.7% | 36.8% |
+| Q5 | 3.6% | 73.7% |
+| Q5-Q1 | -10.0% | 36.8% |
 
 ## What the final model leans on
 
@@ -163,17 +163,17 @@ Permutation importance (drop in in-sample R^2 when a feature is shuffled) for th
 | feature | importance |
 |---|---|
 | rev_cagr_2y | 0.0091 |
-| rev_growth_prev | 0.0046 |
-| ebit_ev | 0.0019 |
-| growth_score | 0.0016 |
-| gross_margin | 0.0016 |
+| rev_growth_prev | 0.0043 |
+| ebit_ev | 0.0023 |
+| fcf_margin | 0.0016 |
+| gross_margin | 0.0015 |
 | rev_accel | 0.0014 |
-| margin_score | 0.0012 |
-| fcf_margin | 0.0011 |
-| rev_growth | 0.0008 |
-| d_net_margin | 0.0007 |
-| op_margin | 0.0006 |
-| composite_score | 0.0005 |
+| growth_score | 0.0011 |
+| rev_growth | 0.0011 |
+| d_fcf_margin | 0.0010 |
+| margin_score | 0.0009 |
+| d_net_margin | 0.0006 |
+| composite_score | 0.0006 |
 
 ## Caveats
 
