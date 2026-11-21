@@ -29,6 +29,8 @@ def _settings(args: argparse.Namespace) -> Settings:
         s = replace(s, max_per_sector=None)
     if args.include_financials:
         s = replace(s, exclude_sectors=())
+    if args.strict:
+        s = replace(s, strict=True)
     return s
 
 
@@ -48,6 +50,8 @@ def main(argv: list[str] | None = None) -> None:
         p.add_argument("--min-screens", type=int, choices=(0, 1, 2, 3), help="pillar screens a pick must pass (default 2)")
         p.add_argument("--max-per-sector", type=int, help="cap on picks per sector (default 5, 0 = no cap)")
         p.add_argument("--include-financials", action="store_true", help="keep Finance and Real Estate stocks")
+        p.add_argument("--strict", action="store_true",
+                       help="fail instead of continuing when sectors or most fundamentals are missing")
         p.add_argument("--workers", type=int)
         p.add_argument("--out", help="report folder (default reports/)")
         p.add_argument("-v", "--verbose", action="store_true")

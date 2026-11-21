@@ -26,6 +26,10 @@ class Settings:
     prices_max_age_hours: float = 12.0
     workers: int = 4
     benchmarks: tuple[str, ...] = ("QQQ",)
+    # Strict mode (used by the scheduled refresh) aborts instead of degrading quietly when
+    # the sector lookup fails or too few tickers have fundamentals (normally ~92%).
+    strict: bool = False
+    min_fundamentals_coverage: float = 0.85
 
     # Eligibility filters, applied point-in-time
     min_mcap: float = 1e9
