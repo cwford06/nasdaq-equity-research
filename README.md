@@ -1,5 +1,7 @@
 # nasdaq-equity-research
 
+[![tests](https://github.com/cwford06/nasdaq-equity-research/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/cwford06/nasdaq-equity-research/actions/workflows/tests.yml)
+
 Quantitative equity research on Nasdaq stocks. The pipeline pulls fundamentals and prices from Yahoo
 Finance and scores every stock on **revenue growth**, **margin expansion** and **valuation**. A
 machine-learning model then picks stocks and puts a **12-month price target** (with bear and bull
