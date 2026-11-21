@@ -20,6 +20,10 @@ from eqresearch.universe import load_universe, sectors
 log = logging.getLogger(__name__)
 
 
+class DataQualityError(RuntimeError):
+    """Raised in strict mode when the downloaded data is too incomplete to publish picks from."""
+
+
 @dataclass
 class Dataset:
     tickers: list[str]
@@ -31,13 +35,21 @@ class Dataset:
 def load_dataset(s: Settings) -> Dataset:
     tickers = load_universe(s.universe, s.max_tickers)
     sector = sectors(s.cache_dir)
+    if s.strict and s.exclude_sectors and sector.empty:
+        raise DataQualityError("sector lookup failed, so Finance/Real Estate cannot be excluded")
     if s.exclude_sectors and not sector.empty:
         before = len(tickers)
         tickers = [t for t in tickers if sector.get(t, "") not in s.exclude_sectors]
         log.info("excluded %d tickers in sectors %s", before - len(tickers), ", ".join(s.exclude_sectors))
     log.info("universe %s: %d tickers", s.universe, len(tickers))
     raw = fetch_fundamentals(tickers, s.cache_dir, s.fundamentals_max_age_days, s.workers)
-    log.info("fundamentals available for %d tickers", len(raw))
+    coverage = len(raw) / max(len(tickers), 1)
+    log.info("fundamentals available for %d tickers (%.0f%% of universe)", len(raw), coverage * 100)
+    if s.strict and coverage < s.min_fundamentals_coverage:
+        raise DataQualityError(
+            f"fundamentals for only {coverage:.0%} of tickers (need {s.min_fundamentals_coverage:.0%}); "
+            "Yahoo is probably rate limiting"
+        )
     prices = fetch_prices(sorted(set(tickers) | set(s.benchmarks)), s.price_start, s.cache_dir, s.prices_max_age_hours)
     annual = annual_panel(raw)
     dupes = duplicate_share_classes(annual)

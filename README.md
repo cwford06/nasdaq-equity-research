@@ -13,6 +13,11 @@ eqr run                      # full Nasdaq (Global Select + Global Market), top 
 eqr run --universe nasdaq100 # faster: Nasdaq-100 only
 ```
 
+A [scheduled workflow](.github/workflows/refresh-picks.yml) re-runs `eqr run --strict` every Saturday
+and commits the refreshed reports, so `reports/` always holds the latest picks. Each week's picks are
+also kept as a dated `picks_YYYY-MM-DD.md`. If Yahoo or Nasdaq return incomplete data, the run fails
+and publishes nothing. You can also start it by hand from the Actions tab.
+
 Outputs go to [`reports/`](reports):
 
 | File | What it is |

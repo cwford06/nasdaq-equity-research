@@ -1,0 +1,64 @@
+name: refresh picks
+
+# Weekly: re-download Yahoo Finance data, re-run the walk-forward backtest, and
+# commit the refreshed reports/ (picks, targets, backtest) to main.
+on:
+  schedule:
+    - cron: "0 13 * * 6" # Saturdays 13:00 UTC, after Friday's close has settled
+  workflow_dispatch:
+  # Changes to this workflow get a dry run (no commit) on the pull request.
+  pull_request:
+    paths:
+      - .github/workflows/refresh-picks.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-picks
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    # A cold download of ~1,500 tickers takes 5-10 minutes, longer if Yahoo rate limits.
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      # --strict fails the job (and publishes nothing) if the sector lookup fails or
+      # Yahoo returns fundamentals for too few tickers, instead of quietly
+      # publishing picks built from partial data.
+      - name: Run pipeline
+        run: eqr run --strict
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f reports/picks_latest.md ]; then
+            sed -n '1,40p' reports/picks_latest.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit refreshed reports
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "No report changes to commit."
+            exit 0
+          fi
+          git commit -m "Refresh picks ($(date -u +%Y-%m-%d))"
+          git push
