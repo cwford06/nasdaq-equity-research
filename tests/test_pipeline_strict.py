@@ -26,8 +26,17 @@ def test_strict_fails_when_fundamentals_coverage_is_low(offline):
         pipeline.load_dataset(Settings(strict=True))
 
 
+class ReachedPrices(Exception):
+    pass
+
+
 def test_non_strict_does_not_raise_on_low_coverage(offline):
+    """Without --strict, low coverage is logged and the pipeline carries on to download prices."""
+
+    def stop_at_prices(*a, **k):
+        raise ReachedPrices
+
     offline.setattr(pipeline, "fetch_fundamentals", lambda tk, *a, **k: {t: {} for t in tk[:5]})
-    offline.setattr(pipeline, "fetch_prices", lambda *a, **k: (_ for _ in ()).throw(StopIteration("reached prices")))
-    with pytest.raises(StopIteration, match="reached prices"):
+    offline.setattr(pipeline, "fetch_prices", stop_at_prices)
+    with pytest.raises(ReachedPrices):
         pipeline.load_dataset(Settings(strict=False))
